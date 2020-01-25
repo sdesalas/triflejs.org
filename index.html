@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=575">
+		<meta name="description" content="A headless Internet Explorer browser using the .NET WebBrowser Class with a Javascript API running on the V8 JavaScript engine. Perfect for test automation.">
+		<meta property="og:site_name" content="trifleJS">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="">
+		<meta property="og:description" content="A headless Internet Explorer browser using the .NET WebBrowser Class with a Javascript API running on the V8 JavaScript engine. Perfect for test automation.">
+		<meta property="og:url" content="https://triflejs.org">
+		<meta property="og:image" content="wp-content/themes/triflejs/img/logo-og-220x220px.png">
+		<link rel="shortcut icon" type="image/x-icon" href="wp-content/themes/triflejs/favicon.ico">
+		<link rel="icon" type="image/x-icon" href="wp-content/themes/triflejs/favicon.ico">
+		<link rel="icon" type="image/png" href="wp-content/themes/triflejs/favicon.png">
+		<title>trifleJS: Headless automation for Internet Explorer</title>
+		<meta name="template" content="trifleJS 1.0">
+		<link rel="dns-prefetch" href="//ajax.googleapis.com">
+		<link rel="dns-prefetch" href="//fonts.googleapis.com">
+		<link rel="dns-prefetch" href="//s.w.org">
+		<link rel="stylesheet" id="gallery-css" href="wp-content/themes/triflejs/library/css/gallery.min.css" type="text/css" media="all">
+		<link rel="stylesheet" id="style-css" href="wp-content/themes/triflejs/style.css" type="text/css" media="all">
+		<link rel="stylesheet" id="wp-block-library-css" href="wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+		<link rel="stylesheet" id="triflejs-fonts-css" href="//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C700%7CRoboto+Condensed%3A400%2C700%7CVolkhov&ver=1.0" type="text/css" media="all">
+		<style type="text/css" id="custom-background-css">
+			body.custom-background { background-image: url("wp-content/themes/triflejs/img/pattern.png"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: scroll; }
+		</style>
+</head>
+<body class="wordpress ltr en parent-theme y2020 m01 d25 h15 saturday logged-out custom-background custom-header home blog">
+	<a href="https://github.com/sdesalas/trifleJS">
+		<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub">
+	</a>
+	<div id="page" class="site">				
+		<header id="masthead" class="site-header" role="banner"><div class="container">
+					<div class="site-branding">
+						<div class="site-logo">
+							<a href="/" title="trifleJS" rel="home">
+							<img class="logo" src="wp-content/uploads/2013/12/copy-trifle-withletters1.png" alt="trifleJS"></a>
+							</div>
+							<h1 id="site-title">
+								<a href="/" title="trifleJS" rel="home">
+									<span>trifleJS</span>
+								</a>
+							</h1>
+							<h2 id="site-description">
+								<span>Headless automation for Internet Explorer</span>
+							</h2>
+						</div>
+					</div>
+		</header><div id="main" class="site-main">
+			<div class="container">
+				<div id="primary" class="site-content no-sidebar">
+					<div id="content" class="content hfeed" role="main">
+			
+	<article id="post-7" class="hentry post publish post-1 odd author-admin format-aside category-section"><div class="entry-wrap">
+
+				<div class="entry-summary">
+					<h2>A headless Internet Explorer browser using the <a href="//msdn.microsoft.com/en-us/library/system.windows.forms.webbrowser.aspx">.NET WebBrowser Class</a> with a Javascript API running on the <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 engine</a>.</h2>
+<h3>The API is coded as a port of <a href="//phantomjs.org/">PhantomJS</a>. Perfect for <a href="//en.wikipedia.org/wiki/Test_automation" target="_blank">test automation</a>. If you have used phantom before then you already know how to use TrifleJS.</h3>
+<p><img alt="" src="https://raw.github.com/sdesalas/trifleJS/master/Docs/What.Is.Trifle.png" width="560" height="450"></p>
+<h3>It supports different version of IE interchangeably depending on the current version installed (IE9 can <a href="//msdn.microsoft.com/en-us/library/ie/hh968260(v=vs.85).aspx#browserModeMenu" target="_blank">emulate</a> IE7, IE8 or IE9 but not IE10).</h3>
+<pre><code>C:> TrifleJS.exe --emulate=IE8 --render=http://whatbrowser.org/
+</code></pre>
+<p><img title="Running as IE 8" alt="IE 8" src="https://raw.github.com/sdesalas/trifleJS/master/Docs/whatbrowser.org.IE8.png"></p>
+				</div>
+
+			</div>
+
+		
+		
+	</article><article id="post-112" class="hentry post publish post-2 even alt author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-112">API Status (79%)</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>This is the overall status of the API implementation: 145 components in 184 total (ie 79%)</p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><a href="#post-29">Command Line Options</a></td>
+<td>Partial</td>
+<td>7 out of 19 options</td>
+</tr><tr><td><a href="#post-11">Global Methods</a></td>
+<td>Ready</td>
+<td>.require() for CommonJS module definition</td>
+</tr><tr><td><a href="#post-18">Object: phantom</a></td>
+<td>Partial</td>
+<td>9 out of 11 members</td>
+</tr><tr><td><a href="#post-24">Module: System</a></td>
+<td>Ready</td>
+<td>5 out of 5 members</td>
+</tr><tr><td><a href="#post-27">Module: FileSystem</a></td>
+<td>Ready</td>
+<td>35 out of 35 members</td>
+</tr><tr><td><a href="#post-20">Module: WebPage</a></td>
+<td>Partial</td>
+<td>47 out of 71 members</td>
+</tr><tr><td><a href="#post-63">Module: WebServer</a></td>
+<td>Ready</td>
+<td>19 out of 19 members</td>
+</tr><tr><td><a href="#post-222">Module: ChildProcess</a></td>
+<td>Ready</td>
+<td>14 out of 14 members</td>
+</tr><tr><td><a href="#post-31">New Features</a></td>
+<td>Partial</td>
+<td>8 out of 9 options (IE emulation etc)</td>
+</tr></tbody></table><h3>Latest Updates</h3>
+<p>For latest updates from the developer follow <a title="@triflejs" href="//twitter.com/triflejs" target="_blank">@triflejs</a>.</p>
+<h3>Download Beta</h3>
+<p>This is still very much work-in-progress. <a href="#post-33">Click here</a> for binaries.</p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-29" class="hentry post publish post-3 odd author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-29">Command Line Options</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>TrifleJS runs on the command line, usually by pointing it to a <code>script.js</code> file.</p>
+<pre><code>C:\> TrifleJS.exe examples\version.js --emulate=IE9
+phantomjs -> 1.7.0
+triflejs -> 0.5.0
+internet explorer -> IE9
+user agent -> Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/7.0)</code></pre>
+<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a href="https://github.com/ariya/phantomjs/wiki/API-Reference/5efc9a409c029f54d73436cda3de6d1bb2143f86#command-line-options" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference#command-line-options</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td>(no arguments)</td>
+<td>Ready</td>
+<td>Runs interactive mode (REPL). See below.</td>
+</tr><tr><td><code>path-to/script.js</code></td>
+<td>Ready</td>
+<td>Executes <code>script.js</code> file.</td>
+</tr><tr><td><code>--help</code> or <code>-h</code></td>
+<td>Ready</td>
+<td>Lists command line options and quits.</td>
+</tr><tr><td><code>--version</code> or <code>-v</code></td>
+<td>Ready</td>
+<td>Current Version of TrifleJS</td>
+</tr><tr><td><code>--cookies-file=/path/to/cookies.txt</code></td>
+<td>To Do</td>
+<td>File name to store persistent Cookies.</td>
+</tr><tr><td><code>--disk-cache=[true|false]</code></td>
+<td>Unsupported</td>
+<td>Always <code>true</code>. To clear use <code><a href="#post-31">--clear-cache</a>.</code></td>
+</tr><tr><td><code>--ignore-ssl-errors=[true/false]</code></td>
+<td>Ready</td>
+<td>Ignores SSL errors.</td>
+</tr><tr><td><code>--load-images=[true/false]</code></td>
+<td>To Do</td>
+<td>Load all inlined images (default <code>true</code>).</td>
+</tr><tr><td><code>--local-storage-path=/some/path</code></td>
+<td>Unsupported</td>
+<td>Path cannot be changed in IE.</td>
+</tr><tr><td><code>--local-storage-quota=number</code></td>
+<td>Unsupported</td>
+<td>IE quota set to 10Mb per site.</td>
+</tr><tr><td> <code>--local-to-remote-url-access=[true|false]</code></td>
+<td> To Do</td>
+<td>Allows access to remote URL (default <code>false</code>)</td>
+</tr><tr><td><code>--max-disk-cache-size=size</code></td>
+<td> Unsupported</td>
+<td>IE does not limit cache size.</td>
+</tr><tr><td><code>--output-encoding=encoding</code></td>
+<td>Ready</td>
+<td>Encoding for terminal output (default <code>utf8</code>).</td>
+</tr><tr><td><code>--remote-debugger-port=number</code></td>
+<td>To Do</td>
+<td>Starts script in debug and listens on port</td>
+</tr><tr><td><code>--remote-debugger-autorun=[yes|no]</code></td>
+<td>To Do</td>
+<td>Runs in debugger immediately (default <code>no</code>)</td>
+</tr><tr><td><code>--proxy=address:port</code></td>
+<td>Partial</td>
+<td>Specifies the proxy server to use.</td>
+</tr><tr><td><code>--proxy-type=[http/socks5/none]</code></td>
+<td>To Do</td>
+<td>Specifies the type of the proxy server.</td>
+</tr><tr><td><code>--proxy-auth=user:passw</code></td>
+<td>Partial</td>
+<td>Authentication info for the proxy.</td>
+</tr><tr><td><code>--script-encoding=encoding</code></td>
+<td>Ready</td>
+<td>Encoding for starting script (default <code>utf8</code>).</td>
+</tr><tr><td><code>--ssl-protocol=<br>
+[sslv3|sslv2|tlsv1|any]</code></td>
+<td>To Do</td>
+<td>Sets HTTPS protocol (default <code>SSLv3</code>).</td>
+</tr><tr><td><code>--ssl-certificates-path=<val></code></td>
+<td>To Do</td>
+<td>Location for custom certs (default to system).</td>
+</tr><tr><td><code>--web-security=[true/false]</code></td>
+<td>To Do</td>
+<td>Prevents cross-domain XHR (default <code>true</code>).</td>
+</tr><tr><td><code>--webdriver</code></td>
+<td>Unsupported</td>
+<td>WebDriver mode (default <code>127.0.0.1:8910</code>)</td>
+</tr><tr><td><code>--webdriver-selenium-grid-hub</code></td>
+<td>Unsupported</td>
+<td>URL to Selenium Grid HUB (default <code>none</code>)</td>
+</tr><tr><td><code>--config=/path/to/config.json</code></td>
+<td>To Do</td>
+<td>JSON replacement for command switches.</td>
+</tr></tbody></table><h2>REPL (Interactive Mode)</h2>
+<p>You can also run TrifleJS <a href="//phantomjs.org/repl.html">interactively</a> in the V8 context by executing it without any arguments.</p>
+<pre><code>C:\> TrifleJS.exe
+triflejs> console.log(phantom.version)
+{
+  "major": 1,
+  "minor": 7,
+  "patch": 0
+} 
+triflejs> var keys = Object.keys(phantom.version);
+triflejs> var values = keys.map(function(k) {return phantom.version[k]});
+triflejs> console.log(values);
+[
+  1,
+  7,
+  0
+]
+triflejs> console.log(values.join('.'));
+1.7.0
+</code></pre>
+<p>The REPL (Read-Eval-Print-Loop) provides a way to interactively run JavaScript and see the results. It can be used for debugging, testing, or just trying things out.</p>
+<p>To exit the REPL just type <code>phantom.exit()</code> and press return.</p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-11" class="hentry post publish post-4 even alt author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-11">Global Methods</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a href="https://github.com/ariya/phantomjs/wiki/API-Reference/5efc9a409c029f54d73436cda3de6d1bb2143f86#function-require" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference#function-require</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td>.<a href="https://github.com/ariya/phantomjs/wiki/API-Reference#function-require">require()</a></td>
+<td>Ready</td>
+<td>Initialises CommonJS modules</td>
+</tr></tbody></table><p></p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-18" class="hentry post publish post-5 odd author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-18">Object: phantom</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a href="https://github.com/ariya/phantomjs/wiki/API-Reference-phantom/5efc9a409c029f54d73436cda3de6d1bb2143f86" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference-phantom</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.args</code></td>
+<td>Ready</td>
+<td>Arguments passed to the script.</td>
+</tr><tr><td><code>.cookies</code></td>
+<td>Ready</td>
+<td>Get or set Cookies for any domain.</td>
+</tr><tr><td><code>.cookiesEnabled</code></td>
+<td>Ready</td>
+<td>Controls whether cookies are enabled</td>
+</tr><tr><td><code>.version</code></td>
+<td>Ready</td>
+<td>The version of PhantomJS instance.</td>
+</tr><tr><td><code>.libraryPath</code></td>
+<td>Ready</td>
+<td>Used by <code>.injectJs()</code> to find scripts.</td>
+</tr><tr><td><code>.scriptName</code></td>
+<td>Ready</td>
+<td>Name of the invoked script file.</td>
+</tr><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.addCookie({cookie})</code></td>
+<td>Partial</td>
+<td>Add a (session) Cookie to the CookieJar.</td>
+</tr><tr><td><code>.clearCookies()</code></td>
+<td>Partial</td>
+<td>Delete (session) Cookies.</td>
+</tr><tr><td><code>.deleteCookie(name)</code></td>
+<td>Unsupported</td>
+<td>Deletes a Cookie.</td>
+</tr><tr><td><code>.exit(returnValue)</code></td>
+<td>Ready</td>
+<td>Exits program with return value.</td>
+</tr><tr><td><code>.injectJS(filename)</code></td>
+<td>Ready</td>
+<td>Injects external scripts</td>
+</tr><tr><td><em><strong>Events</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>#onError</code></td>
+<td>Ready</td>
+<td>Global error handler</td>
+</tr></tbody></table><p> </p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-24" class="hentry post publish post-6 even alt author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-24">Module: System</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a href="https://github.com/ariya/phantomjs/wiki/API-Reference-System/5efc9a409c029f54d73436cda3de6d1bb2143f86" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference-System</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.pid</code></td>
+<td>Ready</td>
+<td>Current Process ID for TrifleJS process.</td>
+</tr><tr><td><code>.platform</code></td>
+<td>Ready</td>
+<td>Name of platform, always <code>phantomjs</code>.</td>
+</tr><tr><td><code>.os</code></td>
+<td>Ready</td>
+<td>Information about the operating system</td>
+</tr><tr><td><code>.env</code></td>
+<td>Ready</td>
+<td>Key-value pairs of environment variables</td>
+</tr><tr><td><code>.args</code></td>
+<td>Ready</td>
+<td>List of the command-line arguments</td>
+</tr></tbody></table><p></p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-27" class="hentry post publish post-7 odd author-admin format-standard category-section post_tag-100"><header class="entry-header"><h2><a href="#post-27">Module: FileSystem</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a title="https://github.com/ariya/phantomjs/wiki/API-Reference-FileSystem" href="https://github.com/ariya/phantomjs/wiki/API-Reference-FileSystem/5efc9a409c029f54d73436cda3de6d1bb2143f86" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference-FileSystem</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.separator</code></td>
+<td>Ready</td>
+<td>The path separator for O/S.</td>
+</tr><tr><td><code>.workingDirectory</code></td>
+<td>Ready</td>
+<td>The current working directory.</td>
+</tr><tr><td><em><strong>Query Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.list(path)</code></td>
+<td>Ready</td>
+<td>Returns list of files in <code>path</code>.</td>
+</tr><tr><td><code>.absolute(path)</code></td>
+<td>Ready</td>
+<td>Returns absolute path to file or directory</td>
+</tr><tr><td><code>.exists(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if a file or a directory exists.</td>
+</tr><tr><td><code>.isDirectory(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if specified <code>path</code> is directory.</td>
+</tr><tr><td><code>.isFile(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if specified <code>path</code> is a file</td>
+</tr><tr><td><code>.isAbsolute(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> for an absolute path</td>
+</tr><tr><td><code>.isExecutable(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if file can be executed</td>
+</tr><tr><td><code>.isReadable(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if file or directory is readable</td>
+</tr><tr><td><code>.isWritable(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if file or directory is writable</td>
+</tr><tr><td><code>.isLink(path)</code></td>
+<td>Ready</td>
+<td><code>true</code> if path is symbolic link (not junction)</td>
+</tr><tr><td><code>.readLink(path)</code></td>
+<td>Ready</td>
+<td>returns the target of a symbolic link</td>
+</tr><tr><td><em><strong>Directory Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.changeWorkingDirectory(path)</code></td>
+<td>Ready</td>
+<td>Changes the current <code>.workingDirectory</code></td>
+</tr><tr><td><code>.makeDirectory(path)</code></td>
+<td>Ready</td>
+<td>Creates a new directory.</td>
+</tr><tr><td><code>.makeTree(path)</code></td>
+<td>Ready</td>
+<td>Creates a directory including missing parent directories.</td>
+</tr><tr><td><code>.removeDirectory(path)</code></td>
+<td>Ready</td>
+<td>Removes a directory if it is empty.</td>
+</tr><tr><td><code>.removeTree(path)</code></td>
+<td>Ready</td>
+<td>Removes specified path and everything in it.</td>
+</tr><tr><td><code>.copyTree(source, destination)</code></td>
+<td>Ready</td>
+<td>Copies all files from <code>source</code> to <code>destination</code> path.</td>
+</tr><tr><td><em><strong>File Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.open(path, mode)</code></td>
+<td>Ready</td>
+<td>Returns a <code>stream</code> object (<code>mode:</code> <code>'r'</code> <code>'w'</code> <code>'a'</code> or ‘rb’ ‘wb’);</td>
+</tr><tr><td><code>.read(path)</code></td>
+<td>Ready</td>
+<td>Reads contents of a file.</td>
+</tr><tr><td><code>.write(path)</code></td>
+<td>Ready</td>
+<td>Writes content to a file (<code>mode:</code> <code>'w'</code> <code>'a'</code> or <code>'wb'</code>).</td>
+</tr><tr><td><code>.size(path)</code></td>
+<td>Ready</td>
+<td>Returns size (in bytes) of a file.</td>
+</tr><tr><td><code>.remove(path)</code></td>
+<td>Ready</td>
+<td>Removes a file in specified <code>path</code></td>
+</tr><tr><td><code>.copy(source, destination)</code></td>
+<td>Ready</td>
+<td>Copies a file to <code>destination</code> path.</td>
+</tr><tr><td><code>.move(source, destination)</code></td>
+<td>Ready</td>
+<td>Moves a file to another, effectively renaming it.</td>
+</tr><tr><td><code>.touch(path)</code></td>
+<td>Ready</td>
+<td>Touches a file, changing its access timestamp.</td>
+</tr></tbody></table><h3>Stream Object</h3>
+<p>A <code>stream</code> object returned from the <code>fs.open(path)</code> function has the following methods:</p>
+<table><thead><tr><th>FEATURE</th>
+<th>STATUS</th>
+<th>NOTES</th>
+</tr></thead><tbody><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.read()</code></td>
+<td>Ready</td>
+<td>Returns the content of the stream.</td>
+</tr><tr><td><code>.readLine()</code></td>
+<td>Ready</td>
+<td>Reads a line from the stream and returns it.</td>
+</tr><tr><td><code>.atEnd()</code></td>
+<td>Ready</td>
+<td>Returns true if the end of the file was reached.</td>
+</tr><tr><td><code>.write(data)</code></td>
+<td>Ready</td>
+<td>Writes a data string to the stream.</td>
+</tr><tr><td><code>.writeLine(data)</code></td>
+<td>Ready</td>
+<td>Writes the data string as a line to the stream.</td>
+</tr><tr><td><code>.seek(pos)</code></td>
+<td>Ready</td>
+<td>Moves to a certain position into a stream.</td>
+</tr><tr><td><code>.flush()</code></td>
+<td>Ready</td>
+<td>Flushes all pending input/output.</td>
+</tr><tr><td><code>.close()</code></td>
+<td>Ready</td>
+<td>Closes and completes the stream operation.</td>
+</tr></tbody></table><p> </p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-20" class="hentry post publish post-8 even alt author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-20">Module: WebPage</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a href="https://github.com/ariya/phantomjs/wiki/API-Reference-WebPage/e17c0dd8a89831251efc9d79b887fae7d0f73f2c" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference-WebPage</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.canGoBack</code></td>
+<td>Ready</td>
+<td><code>true</code> if browser can navigate back.</td>
+</tr><tr><td><code>.canGoForward</code></td>
+<td>Ready</td>
+<td><code>true</code> if browser can navigate forward.</td>
+</tr><tr><td><code>.clipRect</code></td>
+<td>To Do</td>
+<td>Page area rasterized during <code>.render()</code></td>
+</tr><tr><td><code>.content</code></td>
+<td>Ready</td>
+<td>HTML content of the web page.</td>
+</tr><tr><td><code>.cookies</code></td>
+<td>Partial</td>
+<td>Get/set cookies visible in current URL.</td>
+</tr><tr><td><code>.customHeaders</code></td>
+<td>Ready</td>
+<td>Additional HTTP headers sent to server.</td>
+</tr><tr><td><code>.event</code></td>
+<td>To Do</td>
+<td>Hash object with a list of keyboard events.</td>
+</tr><tr><td><code>.focusedFrameName</code></td>
+<td>Ready</td>
+<td>Name of frame IE is currently focused on.</td>
+</tr><tr><td><code>.frameContent</code></td>
+<td>Ready</td>
+<td>HTML content of active frame</td>
+</tr><tr><td><code>.frameName</code></td>
+<td>Ready</td>
+<td>Name of active window frame</td>
+</tr><tr><td><code>.framePlainText</code></td>
+<td>Ready</td>
+<td>Plain Text body in active window frame</td>
+</tr><tr><td><code>.frameTitle</code></td>
+<td>Ready</td>
+<td>Title of active window frame</td>
+</tr><tr><td><code>.frameUrl</code></td>
+<td>Ready</td>
+<td>Url of active window frame</td>
+</tr><tr><td><code>.framesCount</code></td>
+<td>Ready</td>
+<td>Number of frames in browser window</td>
+</tr><tr><td><code>.framesName</code></td>
+<td>Ready</td>
+<td>List of names for frames in browser window.</td>
+</tr><tr><td><code>.libraryPath</code></td>
+<td>Ready</td>
+<td>Used by <code>.injectJs()</code> to resolve script.</td>
+</tr><tr><td><code>.navigationLocked</code></td>
+<td>To Do</td>
+<td>Locks navigation from page (default <code>false</code>)</td>
+</tr><tr><td><code>.offlineStoragePath</code></td>
+<td>Unsupported</td>
+<td>Path for cache + cookies. Cannot be changed.</td>
+</tr><tr><td><code>.offlineStorageQuota</code></td>
+<td>Unsupported</td>
+<td>Storage for cache + cookies. No quota in IE.</td>
+</tr><tr><td><code>.ownsPages</code></td>
+<td>To Do</td>
+<td><code>true</code> if current page has any child popups.</td>
+</tr><tr><td><code>.pages</code></td>
+<td>To Do</td>
+<td>Array of <code>WebPage</code> for child popup pages.</td>
+</tr><tr><td><code>.paperSize</code></td>
+<td>To Do</td>
+<td>Size of the page when rendered as PDF.</td>
+</tr><tr><td><code>.plainText</code></td>
+<td>Ready</td>
+<td>Content of the web page in plain text.</td>
+</tr><tr><td><code>.scrollPosition</code></td>
+<td>To Do</td>
+<td>Scroll position of the web page.</td>
+</tr><tr><td><code>.settings</code></td>
+<td>To Do</td>
+<td>Various settings of the web page.</td>
+</tr><tr><td><code>.title</code></td>
+<td>Ready</td>
+<td>Title of the page.</td>
+</tr><tr><td><code>.url</code></td>
+<td>Ready</td>
+<td>Current URL of the web page.</td>
+</tr><tr><td><code>.viewportSize</code></td>
+<td>Ready</td>
+<td>Size of viewport for the layout process.</td>
+</tr><tr><td><code>.windowName</code></td>
+<td>Ready</td>
+<td>Name of the main browser window.</td>
+</tr><tr><td><code>.zoomFactor</code></td>
+<td>Ready</td>
+<td>Scaling factor for rendering pages.</td>
+</tr><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.addCookie({cookie})</code></td>
+<td>Partial</td>
+<td>Add a (session) cookie to the current page.</td>
+</tr><tr><td><code>.childFramesCount()</code></td>
+<td>Unsupported</td>
+<td>Deprecated. Use <code>.framesCount</code>.</td>
+</tr><tr><td><code>.childFramesName()</code></td>
+<td>Unsupported</td>
+<td>Deprecated. Use <code>.framesName</code>.</td>
+</tr><tr><td><code>.clearCookies()</code></td>
+<td>Partial</td>
+<td>Delete (session) Cookies for current domain.</td>
+</tr><tr><td><code>.close()</code></td>
+<td>Ready</td>
+<td>Closes page to release memory.</td>
+</tr><tr><td><code>.currentFrameName()</code></td>
+<td>Unsupported</td>
+<td>Deprecated. Use <code>.frameName</code>.</td>
+</tr><tr><td><code>.deleteCookie(name)</code></td>
+<td>Unsupported</td>
+<td>Not supported by IE. Use <code>.clearCookies()</code>.</td>
+</tr><tr><td><code>.evaluate(function, arg1, arg2,..)</code></td>
+<td>Ready</td>
+<td>Evaluates function inside current page.</td>
+</tr><tr><td><code>.evaluateAsync(function, ms, arg1, arg2..)</code></td>
+<td>Ready</td>
+<td>Async <code>evaluate()</code> with optional timeout.</td>
+</tr><tr><td><code>.evaluateJavaScript(str)</code></td>
+<td>Ready</td>
+<td>Evaluates script in current page.</td>
+</tr><tr><td><code>.getPage(windowName)</code></td>
+<td>To Do</td>
+<td>Gets a page inside a window frame.</td>
+</tr><tr><td><code>.goBack()</code></td>
+<td>Ready</td>
+<td>Goes back to previous page in history</td>
+</tr><tr><td><code>.goForward()</code></td>
+<td>Ready</td>
+<td>Goes forward to next page in history</td>
+</tr><tr><td><code>.go(n)</code></td>
+<td>Ready</td>
+<td>Goes back or forwards by <code>n</code> pages in history</td>
+</tr><tr><td><code>.includeJs(url, callback)</code></td>
+<td>Ready</td>
+<td>Includes script the specified <code>url</code></td>
+</tr><tr><td><code>.injectJs(filename)</code></td>
+<td>Ready</td>
+<td>Injects script code specified file</td>
+</tr><tr><td><code>.open(url, callback)</code></td>
+<td>Ready</td>
+<td>Opens <code>url</code> and loads it to the page.</td>
+</tr><tr><td><code>.open(url, method, callback)</code></td>
+<td>Ready</td>
+<td>As above but using a HTTP method.</td>
+</tr><tr><td><code>.open(url, method, data, callback)</code></td>
+<td>Ready</td>
+<td>As above, using a HTTP method and data.</td>
+</tr><tr><td><code>.openUrl(url, httpConf, settings)</code></td>
+<td>To Do</td>
+<td>Opens <code>url</code> with specific settings.</td>
+</tr><tr><td><code>.release()</code></td>
+<td>Unsupported</td>
+<td>Deprecated. Use <code>.close()</code>.</td>
+</tr><tr><td><code>.reload()</code></td>
+<td>Ready</td>
+<td>Reloads current page.</td>
+</tr><tr><td><code>.render(filename)</code></td>
+<td>Ready</td>
+<td>Renders page to specified <code>filename</code></td>
+</tr><tr><td><code>.renderBase64(format)</code></td>
+<td>Ready</td>
+<td>Renders page as Base64-encoded string</td>
+</tr><tr><td><code>.sendEvent(type, [,args..])</code></td>
+<td>To Do</td>
+<td>Sends mouse/keyboard event to web page.</td>
+</tr><tr><td><code>.setContent(content, url)</code></td>
+<td>(v1.8)</td>
+<td>Sets <code>.content</code> and <code>.url</code> (no http request).</td>
+</tr><tr><td><code>.stop()</code></td>
+<td>Ready</td>
+<td>Stops loading the current page.</td>
+</tr><tr><td><code>.switchToFocusedFrame()</code></td>
+<td>Ready</td>
+<td>Switches to the frame IE is focused on</td>
+</tr><tr><td><code>.switchToFrame(name)</code></td>
+<td>Ready</td>
+<td>Switches current frame by name</td>
+</tr><tr><td><code>.switchToMainFrame()</code></td>
+<td>Ready</td>
+<td>Switches current frame to main window</td>
+</tr><tr><td><code>.switchToParentFrame()</code></td>
+<td>Ready</td>
+<td> Switches current frame to parent</td>
+</tr><tr><td><code>.uploadFile(selector, path)</code></td>
+<td>To Do</td>
+<td>Uploads file in <code>path</code> to a form element</td>
+</tr><tr><td><em><strong>Events</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>#onAlert</code></td>
+<td>Ready</td>
+<td>Fires for <code>alert()</code> calls on page.</td>
+</tr><tr><td><code>#onCallback</code></td>
+<td>Ready</td>
+<td>Fires for <code>window.callPhantom</code> calls.</td>
+</tr><tr><td><code>#onClosing</code></td>
+<td>To Do</td>
+<td>Fires on <code>window.close()</code></td>
+</tr><tr><td><code>#onConfirm</code></td>
+<td>Ready</td>
+<td>Fires for <code>confirm()</code> calls on page.</td>
+</tr><tr><td><code>#onConsoleMessage</code></td>
+<td>To Do</td>
+<td>Fires for <code>console</code> messages on page.</td>
+</tr><tr><td><code>#onError</code></td>
+<td>Ready</td>
+<td>Fires when a JavaScript error occurs in the page.</td>
+</tr><tr><td><code>#onFilePicker</code></td>
+<td>To Do</td>
+<td>Fires when file added to form input element.</td>
+</tr><tr><td><code>#onInitialized</code></td>
+<td>Ready</td>
+<td>Fires after page created and before URL loaded</td>
+</tr><tr><td><code>#onLoadStarted</code></td>
+<td>Ready</td>
+<td>Fires when page starts loading.</td>
+</tr><tr><td><code>#onLoadFinished</code></td>
+<td>Ready</td>
+<td>Fires when page finishes loading.</td>
+</tr><tr><td><code>#onNavigationRequested</code></td>
+<td>To Do</td>
+<td>Fires for all navigations events.</td>
+</tr><tr><td><code>#onPageCreated</code></td>
+<td>To Do</td>
+<td>Fires on child page created – ie <code>window.open().</code></td>
+</tr><tr><td><code>#onPrompt</code></td>
+<td>Ready</td>
+<td>Fires when <code>prompt()</code> call made on page.</td>
+</tr><tr><td><code>#onResourceRequested</code></td>
+<td>To Do</td>
+<td>Fires for all requests resources (image, css, js etc).</td>
+</tr><tr><td><code>#onResourceReceived</code></td>
+<td>To Do</td>
+<td>Fires when resources are received.</td>
+</tr><tr><td><code>#onResourceTimeout</code></td>
+<td>To Do</td>
+<td>Fires when resources requested time out.</td>
+</tr><tr><td><code>#onResourceError</code></td>
+<td>(v1.9)</td>
+<td>Fires when error occurs loading resource.</td>
+</tr><tr><td><code>#onUrlChanged</code></td>
+<td>To Do</td>
+<td>Fires whenever URL changes.</td>
+</tr></tbody></table><p> </p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-63" class="hentry post publish post-9 odd author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-63">Module: WebServer</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>Original PhantomJS API Documentation for this section is in:</p>
+<p><a href="https://github.com/ariya/phantomjs/wiki/API-Reference-WebServer/5efc9a409c029f54d73436cda3de6d1bb2143f86" target="_blank">https://github.com/ariya/phantomjs/wiki/API-Reference-WebServer</a></p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.port</code></td>
+<td>Ready</td>
+<td>TCP port on which the server listens for connections.</td>
+</tr><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.listen(binding, callback)</code></td>
+<td>Ready</td>
+<td>Opens TCP port and executes callback for connections.</td>
+</tr><tr><td><code>.listen(binding, opts, callback)</code></td>
+<td>Ready</td>
+<td>As per generic .listen() but supports Keep-Alive mode.</td>
+</tr><tr><td><code>.close()</code></td>
+<td>Ready</td>
+<td>Shuts down the server.</td>
+</tr></tbody></table><h3>Example</h3>
+<pre>var server = require('webserver').create();
+var service = server.listen(8080, function(request, response) {
+    response.statusCode = 200;
+    response.write('<html><body>Hello!</body></html>');
+    response.close();
+});</pre>
+<h3>Request Object</h3>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.method</code></td>
+<td>Ready</td>
+<td>Request method (<code>'GET'</code>, <code>'POST'</code>, etc.)</td>
+</tr><tr><td><code>.url</code></td>
+<td>Ready</td>
+<td>Path and query string part (if any) of request URL</td>
+</tr><tr><td><code>.httpVersion</code></td>
+<td>Ready</td>
+<td>HTTP Protocol version</td>
+</tr><tr><td><code>.headers</code></td>
+<td>Ready</td>
+<td>HTTP headers as key-value pairs</td>
+</tr><tr><td><code>.post</code></td>
+<td>Ready</td>
+<td>Request body (for <code>'POST'</code> / <code>'PUT'</code> methods).</td>
+</tr><tr><td><code>.postRaw</code></td>
+<td>Ready</td>
+<td>Raw request body (without processing form values)</td>
+</tr></tbody></table><h3>Response Object</h3>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.headers</code></td>
+<td>Ready</td>
+<td>HTTP headers as key-value pairs.</td>
+</tr><tr><td><code>.statusCode</code></td>
+<td>Ready</td>
+<td>Sets the returned HTTP status code.</td>
+</tr><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.setHeader(name, value)</code></td>
+<td>Ready</td>
+<td>Adds a HTTP header to response</td>
+</tr><tr><td><code>.header(name)</code></td>
+<td>Ready</td>
+<td>Gets a HTTP header</td>
+</tr><tr><td><code>.setEncoding(encoding)</code></td>
+<td>Ready</td>
+<td>Sets the response encoding. Default: UTF8</td>
+</tr><tr><td><code>.write(data)</code></td>
+<td>Ready</td>
+<td>Sends a data chunk. Can be called multiple times.</td>
+</tr><tr><td><code>.writeHead(statusCode, headers)</code></td>
+<td>Ready</td>
+<td>Sends headers to the browser.</td>
+</tr><tr><td><code>.close()</code></td>
+<td>Ready</td>
+<td>Closes the HTTP connection.</td>
+</tr><tr><td><code>.closeGracefully()</code></td>
+<td>Ready</td>
+<td>Same as <code>.close()</code> but ensures headers are sent.</td>
+</tr></tbody></table><p> </p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-222" class="hentry post publish post-10 even alt author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-222">Module: ChildProcess</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>PhantomJS API Documentation for this section is in:</p>
+<p><a href="http://phantomjs.org/api/child_process/">http://phantomjs.org/api/child_process/</a></p>
+<p>Note that the original PhantomJS <code>child_process</code> module was left unfinished, there is some additional functionality below that attempts to complete work on the API.</p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.spawn(path, [args])</code></td>
+<td>Ready</td>
+<td>Invoke process and listen on <code>stdout</code>/<code>stderr</code>.</td>
+</tr><tr><td><code>.execFile(path, [args], opts, function)</code></td>
+<td>Ready</td>
+<td>Invoke subprocess and execute callback.</td>
+</tr><tr><td><code>.execSync(path, [args], opts)</code></td>
+<td>Ready</td>
+<td>Invoke subprocess and waits for exit.</td>
+</tr><tr><td><code>.terminate()</code></td>
+<td>Ready</td>
+<td>Terminates all running child processes.</td>
+</tr></tbody></table><h3>Example</h3>
+<pre><code class="language-javascript" data-lang="javascript">var child_process = require("child_process");
+var context = child_process.execFile("dir", ["/a:h","C:\\"], null,
+  function (err, stdout, stderr) {
+    console.log("execFileSTDOUT:", stdout)
+    console.log("execFileSTDERR:", stderr)
+    console.log("context.exitCode", context.exitCode);
+});
+</code></pre>
+<h3>Context Object</h3>
+<p>This object is returned by <code>child_process</code> methods. It represents the execution context for each child process.</p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><em><strong>Properties</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.exited</code></td>
+<td>Ready</td>
+<td><code>true</code> if the process has completed execution</td>
+</tr><tr><td><code>.exitCode</code></td>
+<td>Ready</td>
+<td>Usually <code>0</code> if successful.</td>
+</tr><tr><td><code>.output</code></td>
+<td>Ready</td>
+<td>Console output generated by child process.</td>
+</tr><tr><td><code>.errorOutput</code></td>
+<td>Ready</td>
+<td>Error output generated by child process.</td>
+</tr><tr><td><code>.stdout</code></td>
+<td>Ready</td>
+<td>Lightweight <code>Stream</code> object for console standard output.</td>
+</tr><tr><td><code>.stderr</code></td>
+<td>Ready</td>
+<td>Lightweight <code>Stream</code> object for console standard error.</td>
+</tr><tr><td><em><strong>Methods</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.kill()</code></td>
+<td>Ready</td>
+<td>Terminates process and disposes of memory allocation.</td>
+</tr><tr><td><em><strong>Events</strong></em></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>#onStdOut</code></td>
+<td>Ready</td>
+<td>Fires when data is outputted to <code>stdout</code>.</td>
+</tr><tr><td><code>#onStdErr</code></td>
+<td>Ready</td>
+<td>Fires when data is outputted to <code>stderr</code>.</td>
+</tr><tr><td><code>#onExit</code></td>
+<td>Ready</td>
+<td>Fires when the process terminates.</td>
+</tr></tbody></table><h3>Note on Event Handling:</h3>
+<p>The <code>Context</code> object event handlers have been created in a very flexible format, allowing for the variations that appear in the PhantomJS <code>child_process</code> API, a simplification of the same, and the event handling conventions used elsewhere in the PhantomJS project.</p>
+<p>As per PhantomJS <code>child_process</code> API definition:</p>
+<pre><code>var context = child_process.spawn('triflejs.exe', ['--help']);
+context.stdout.on('data', function(data) { console.log(data); });
+context.stdout.on('data', function(data) { console.error(data); });
+context.on('exit', function(code) { phantom.exit(code); });</code>
+</pre>
+<p>Here is the (recommended) simplified version:</p>
+<pre><code>var context = child_process.spawn('triflejs.exe', ['--help']);
+context.on('stdout', function(data) { console.log(data); });
+context.on('stderr', function(data) { console.error(data); });
+context.on('exit', function(code) { phantom.exit(code); });</code>
+</pre>
+<p>Or alternatively (as used in the <a href="#post-18">Phantom</a> object and <a href="#post-20">WebPage</a> module):</p>
+<pre><code>var context = child_process.spawn('triflejs.exe', ['--help']);
+context.onStdOut = function(data) { console.log(data); };
+context.onStdErr = function(data) { console.error(data); };
+context.onExit = function(code) { phantom.exit(code); };</code></pre>
+<p>An <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Examples">ECMAv5 javascript setter</a> is used in the last example to avoid overwriting a previously defined event listener/callback. To clear all listeners for a particular event just use <code>context.onExit = null;</code>.</p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-31" class="hentry post publish post-11 odd author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-31">New Features</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>These are additional features added into TrifleJS that are not present in PhantomJS.</p>
+<table><thead><tr><th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr></thead><tbody><tr><td><strong>COMMAND LINE</strong></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>--unit-test or -u</code></td>
+<td>Partial</td>
+<td>Runs a full system test.</td>
+</tr><tr><td><code>--clear-cache</code></td>
+<td>Ready</td>
+<td>Clears IE cache history before starting.</td>
+</tr><tr><td><code>--secure-mode</code></td>
+<td>Ready</td>
+<td>Disables ChildProcess and FileSystem modules.</td>
+</tr><tr><td><code>--ignore-popups</code></td>
+<td>Ready</td>
+<td>Ignores Window Popups.</td>
+</tr><tr><td><code>--emulate=(version)</code></td>
+<td>Ready</td>
+<td>Emulates specific IE versions.</td>
+</tr><tr><td><code>--render=(url)</code></td>
+<td>Ready</td>
+<td>Renders a URL to file and quits.</td>
+</tr><tr><td><strong>Object: trifle</strong></td>
+<td></td>
+<td></td>
+</tr><tr><td><code>.version</code></td>
+<td>Ready</td>
+<td>Version of TrifleJS</td>
+</tr><tr><td><code>.emulation</code></td>
+<td>Ready</td>
+<td>Target IE Version for Emulation (set using <code>--emulate=IE9</code>).</td>
+</tr><tr><td><code>.wait(ms)</code></td>
+<td>Ready</td>
+<td>Pauses execution for n milliseconds.</td>
+</tr></tbody></table><p> </p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-53" class="hentry post publish post-12 even alt author-admin format-aside category-section"><div class="entry-wrap">
+
+				<div class="entry-summary">
+					<h2><a href="https://github.com/sdesalas/trifleJS/issues"><img class="wp-image-73 alignright" alt="YOU TOO CAN HELP" src="wp-content/uploads/2013/12/soviet_propaganda4.png" width="144" height="131"></a></h2>
+<h2><a href="javascript:;">TrifleJS needs YOU</a></h2>
+<p>We need your input to keep improving!<br>
+Send code samples and bug reports to:<br><a href="https://github.com/sdesalas/trifleJS/issues">https://github.com/sdesalas/trifleJS/issues</a> </p>
+<p><iframe src="http://ghbtns.com/github-btn.html?user=sdesalas&repo=trifleJS&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" height="20" style="width:85px;border:0;"></iframe> <script type="text/javascript" src="//platform.linkedin.com/in.js">// <![CDATA[
+ lang: en_US
+// ]]></script><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ftriflejs.org&width=85&layout=button_count&action=like&show_faces=false&share=false&height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:21px; position:relative; top:2px; left: 4px;" allowtransparency="true"></iframe> <a href="https://twitter.com/share" class="twitter-share-button" data-via="sdesalas">Tweet</a><br><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
+				</div>
+
+			</div>
+
+		
+		
+	</article><article id="post-33" class="hentry post publish post-13 odd author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-33">Download</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<p>This code is still very much in beta. Check again for updates.</p>
+<table style="height: 112px; table-layout: fixed;" width="341"><tbody><tr><td align="center"><a href="https://github.com/sdesalas/trifleJS/releases/download/v0.4/TrifleJS.zip"><img class="alignnone size-full wp-image-245 aligncenter" style="border: 0;" src="wp-content/uploads/2015/01/icon_zip.gif" alt="icon_zip" width="48" height="48">Stable v0.4</a></td>
+<td align="center"><a href="https://github.com/sdesalas/trifleJS/raw/master/Build/Binary/TrifleJS.Latest.zip"><img class="alignnone size-full wp-image-245 aligncenter" style="border: 0;" src="wp-content/uploads/2015/01/icon_zip.gif" alt="icon_zip" width="48" height="48">Latest Beta v0.5</a></td>
+</tr></tbody></table><p>If you are not sure which version to use then download the ‘Stable’ version.</p>
+				</div>
+
+			
+		</div>
+
+		
+	</article><article id="post-167" class="hentry post publish post-14 even alt author-admin format-standard category-section"><header class="entry-header"><h2><a href="#post-167">Roadmap</a></h2>
+		</header><div class="entry-wrap">
+
+			
+				<div class="entry-summary">
+					<ul class="task-list"><li><code>v0.3</code> – 56% of PhantomJS API – <a href="https://github.com/sdesalas/trifleJS/releases/tag/v0.3"><strong>Release Notes</strong></a></li>
+<li><code>v0.4</code> – 72% of PhantomJS API – <a href="https://github.com/sdesalas/trifleJS/releases/tag/v0.4"><strong>Release Notes</strong></a></li>
+<li><code>v0.5</code> – <span style="color: #000000;">(work in progress…)</span></li>
+<li><code>v0.6</code> – 100% of PhantomJS non-WebPage modules, 80% of WebPage module API</li>
+<li><code>v0.7</code> – 100% of PhantomJS Core API (v1.7) + internal unit tests</li>
+<li><code>v0.8</code> – <a href="https://github.com/n1k0/casperjs">CasperJS</a> Support (implement Test suite and fixes)</li>
+<li><code>v0.9</code> – Testing and Support for Windows platforms (after XP SP2).</li>
+<li><code>v1.0</code> – Only minor Bugfixes left</li>
+<li><code>v1.1</code> – Nice to haves (WebDriver, improved IPC, REPL Autocompletion etc)</li>
+</ul></div>
+
+			
+		</div>
+
+		
+	</article><article id="post-37" class="hentry post publish post-15 odd author-admin format-aside category-section"><div class="entry-wrap">
+
+				<div class="entry-summary">
+					<div style="position: relative;"><span style="position: absolute; left: -10px; top: 120px;"><a class="twitter-follow-button" href="https://twitter.com/sdesalas" data-show-count="false">Follow @sdesalas</a><script type="text/javascript">// <![CDATA[
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+// ]]></script></span><a href="https://github.com/sdesalas"><img class="avatar avatar-100 photo" style="float: left; margin: 10px 30px 40px 0px; -webkit-border-radius: 100px; -moz-border-radius: 100px; border-radius: 100px; -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);" src="http://0.gravatar.com/avatar/e3b505293493b6f61a863750537f9aa8?s=100&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D100&r=G" alt="Steven de Salas" width="100" height="100"></a>
+<h2>Steven de Salas</h2>
+<p><a href="http://desalasworks.com">Steven de Salas</a> is a freelance application developer based in Hobart, Tasmania. He is the main contributor of the TrifleJS project.</p>
+<p> </p>
+<p> </p>
+<h2><img class="avatar avatar-100 photo" style="float: left; clear: both; margin: 10px 30px 30px 0px; -webkit-border-radius: 100px; -moz-border-radius: 100px; border-radius: 100px; -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);" src="wp-content/uploads/2013/12/250441_215289445169268_5845461_n.2.jpg" alt="Razvan Radu" width="100" height="100"></h2>
+<h2>Razvan Radu</h2>
+<p>Razvan is a designer based in Bucharest, Romania. He specializes in logo and web design and has contributed the TrifleJS “trifle” logo to this project.</p>
+</div>
+				</div>
+
+			</div>
+
+		
+		
+	</article></div>
+		
+				
+		
+	
+			
+	</div>
+ 		
+ 	 
+			</div>
+
+			
+		</div>
+
+		
+		<footer id="footer" class="site-footer" role="contentinfo"><div class="container">
+
+				<div class="footer-content">
+					<p class="credit">Copyright © 2020 <a class="site-link" href="/" title="trifleJS" rel="home"><span>trifleJS</span></a>. </p>				</div>
+
+			</div>
+
+		</footer></div> 	
+
+			
+
+<script type="text/javascript" src="wp-content/plugins/better-wp-security/core/modules/wordpress-tweaks/js/blankshield/blankshield.min.js"></script><script type="text/javascript" src="wp-content/plugins/better-wp-security/core/modules/wordpress-tweaks/js/block-tabnapping.js"></script><script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js?ver=1.10.2"></script><script type="text/javascript" src="wp-content/themes/triflejs/js/plugins.js"></script><script type="text/javascript" src="wp-content/themes/triflejs/js/methods.js"></script><script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-44203170-1");
+	pageTracker._trackPageview();
+	} catch(err) {}
+try {
+$('td:contains("Ready")').css('color', 'green').css('background-color', '#c1e8b5');
+$('td:contains("Partial")').css('color', 'brown').css('background-color', '#e8d6b5');
+$('td:contains("To Do")').css('color', 'black').css('background-color', '#ffc7c7');
+$('td:contains("Unsupported")').css('color', '#999').css('background-color', '#ddd');
+} catch (e) {}
+</script></body></html>
